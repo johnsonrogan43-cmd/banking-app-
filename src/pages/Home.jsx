@@ -27,7 +27,7 @@ export default function Home() {
           <div className="text-center text-blue-600">
          <div className="text-2xl font-medium">
   <img 
-    src="/src/assets/citi-true-name-cards-1280x720.webp" 
+    src="/citi-true-name-cards-1280x720.webp" 
     alt="BANNER" 
     className="w-full h-auto object-cover rounded-2xl"
   />

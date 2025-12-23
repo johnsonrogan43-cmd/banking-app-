@@ -30,11 +30,11 @@ export default function Navbar() {
         
        { /* Logo */}
       <Link to="/" className="flex items-end gap-1">
-  <img 
-    src="/src/assets/Citi.svg.png" 
-    alt="Citi Bank logo" 
-    className="h-12 w-12 object-contain"
-  />
+<img 
+  src="/Citi.svg.png" 
+  alt="Citi Bank logo" 
+  className="h-12 w-12 object-contain"
+/>
   <span className="text-3xl text-blue-950 font-bold leading-none pb-0.5"></span>
 </Link>
 
