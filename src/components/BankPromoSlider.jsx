@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import CitiLogo from '../assets/Citi.svg.png';
 
 const slides = [
   {
@@ -60,7 +61,7 @@ export default function BankPromoSlider() {
             {/* Right Logo */}
             <div className="bg-white p-2 rounded-lg shadow ml-6">
               <img
-                src="/src/assets/Citi.svg.png"
+                src={CitiLogo}
                 alt="Citi Logo"
                 className="w-19 h-9 object-contain"
               />

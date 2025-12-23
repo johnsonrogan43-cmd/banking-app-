@@ -4,6 +4,7 @@ import { Settings } from "lucide-react";
 import MenuDropdown from "../components/MenuDropdown";
 import BankPromoSlider from "../components/BankPromoSlider";
 
+
 // Firestore
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
