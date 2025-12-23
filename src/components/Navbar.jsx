@@ -12,6 +12,7 @@ import {
   User,
   MessageSquare,
 } from "lucide-react";
+import CitiLogo from '../assets/Citi.svg.png';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function Navbar() {
        { /* Logo */}
       <Link to="/" className="flex items-end gap-1">
 <img 
-  src="/Citi.svg.png" 
+  src={CitiLogo} 
   alt="Citi Bank logo" 
   className="h-12 w-12 object-contain"
 />

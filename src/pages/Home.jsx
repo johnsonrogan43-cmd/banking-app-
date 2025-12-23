@@ -1,5 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import CitiBanner from '../assets/citi-true-name-cards-1280x720.webp';
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
           <div className="text-center text-blue-600">
          <div className="text-2xl font-medium">
   <img 
-    src="/citi-true-name-cards-1280x720.webp" 
+    src={CitiBanner} 
     alt="BANNER" 
     className="w-full h-auto object-cover rounded-2xl"
   />
