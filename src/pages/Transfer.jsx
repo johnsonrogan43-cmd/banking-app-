@@ -75,7 +75,7 @@ export default function Transfer({ user }) {
           <label className="text-sm text-gray-600">From*</label>
           <input
             type="text"
-            value="Johnson Rogan (MAIN BENEFICIARY) - $1,000,000"
+            value="Johnson Rogan (MAIN BENEFICIARY) - $850,000"
             disabled
             className="w-full border border-gray-300 p-2.5 rounded bg-gray-50 text-gray-500 text-sm"
           />
