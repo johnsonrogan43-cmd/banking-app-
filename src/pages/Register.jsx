@@ -22,7 +22,7 @@ async function safeGetDoc(ref) {
 // GENERATORS
 // ----------------------
 function generateAccountNumber() {
-  return Math.floor(10000000 + Math.random() * 90000000).toString();
+  return Math.floor(1000000000 + Math.random() * 9000000000).toString();
 }
 
 function generateCardNumber() {
