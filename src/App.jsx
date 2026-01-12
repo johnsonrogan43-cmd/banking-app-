@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard'
 import AdminSecure from "./pages/AdminSecure"
 import AdminHidden from "./pages/AdminHidden"
 import Transfer from "./pages/Transfer"
+import Withdraw from "./pages/Withdraw"
 import TransferConfirm from "./pages/TransferConfirm"
 
 export default function App() {
