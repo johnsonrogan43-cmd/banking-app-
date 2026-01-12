@@ -24,6 +24,7 @@ export default function App() {
           <Route path="/verify" element={<Verify />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/transfer" element={<Transfer />} />
+          <Route path='/withdraw' element={<Withdraw />} />
           <Route path="/transfer/confirm" element={<TransferConfirm />} />
           <Route path="/plb-internal-9823-admin" element={<AdminSecure />} />
           <Route path="/system-terminal-access" element={<AdminSecure />} />
