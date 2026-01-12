@@ -5,104 +5,80 @@ export default function Withdraw() {
   const [user, setUser] = useState(null);
   const [amount, setAmount] = useState("");
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // Load logged in user
   useEffect(() => {
     const logged = localStorage.getItem("plb_current_user");
-
     if (!logged) {
       setMsg("Not logged in.");
       return;
     }
-
     const loggedUser = JSON.parse(logged);
-
     const loadData = async () => {
       const users = await loadUsersCloud();
       const u = users[loggedUser.account];
-
       if (u) {
         setUser(u);
       } else {
         setMsg("User not found in cloud.");
       }
     };
-
     loadData();
   }, []);
 
-  const handleWithdraw = async (e) => {
-    e.preventDefault();
-
+  const handleWithdraw = async () => {
     if (!amount || Number(amount) <= 0) {
       setMsg("Enter a valid amount.");
       return;
     }
-
     if (Number(amount) > (user?.balance || 0)) {
       setMsg("Insufficient balance.");
       return;
     }
-
-    try {
-      // Load cloud users
-      const users = await loadUsersCloud();
-
-      // Update user balance
-      const updatedUser = {
-        ...user,
-        balance: user.balance - Number(amount),
-      };
-
-      users[user.account] = updatedUser;
-
-      // Save to cloud
-      await saveUsersCloud(users);
-
-      // Update local cache
-      localStorage.setItem("plb_current_user", JSON.stringify(updatedUser));
-
-      // Save transaction
-      await addTransaction(
-        user.account,
-        "withdraw",
-        Number(amount),
-        "Cash Withdrawal"
-      );
-
-      setMsg("Withdrawal successful!");
-      setAmount("");
-      setUser(updatedUser);
-    } catch (err) {
-      console.error(err);
-      setMsg("Network error. Try again.");
-    }
+    // Start loading forever
+    setLoading(true);
+    setMsg("");
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto mt-10 bg-white shadow-lg rounded-xl">
-      <h2 className="text-xl font-semibold mb-4">Withdraw Funds</h2>
-
-      {msg && (
-        <div className="bg-blue-100 text-blue-700 p-2 rounded mb-3">{msg}</div>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+      {loading && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="text-center">
+            <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="text-white text-base font-medium tracking-wide animate-pulse">
+              Loading...
+            </div>
+          </div>
+        </div>
       )}
-
-      <form onSubmit={handleWithdraw} className="space-y-4">
-        <div>
-          <label className="text-sm text-gray-600">Amount</label>
+      <h2 className="text-2xl font-bold mb-6">Withdraw Funds</h2>
+      {msg && (
+        <div className={`p-3 mb-4 rounded ${msg.includes("successful") ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
+          {msg}
+        </div>
+      )}
+      <div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-medium">Amount</label>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             className="w-full mt-1 p-3 border rounded"
             placeholder="Enter amount"
+            disabled={loading}
           />
         </div>
-
-        <button className="w-full py-3 bg-gray-900 text-white rounded-lg shadow">
-          Withdraw
+        <button
+          onClick={handleWithdraw}
+          disabled={loading}
+          className="w-full bg-blue-500 text-white py-3 rounded font-semibold hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          {loading ? "Processing..." : "Withdraw"}
         </button>
-      </form>
+      </div>
     </div>
   );
 }
